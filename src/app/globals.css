@@ -17,20 +17,20 @@
   color: black !important;
 }
 
-.rbc-btn-group:first-child {
+/* .rbc-btn-group:first-child {
   display: none !important;
-}
+} */
 
 .rbc-toolbar-label {
   text-align: right !important;
   padding: 0px 20px !important;
 }
 
-.rbc-btn-group:last-child {
+.rbc-btn-group {
   font-size: 13px !important;
 }
 
-.rbc-btn-group:last-child button {
+.rbc-btn-group button {
   border: none !important;
   background-color: #f1f0ff !important;
   margin-left: 2px !important;
@@ -105,4 +105,10 @@
 .rbc-event-label {
   color: gray !important;
   margin-bottom: 5px;
+}
+.rbc-current-time-indicator {
+  display: none !important;
+}
+.rbc-day-slot .rbc-events-container {
+  margin-right: 18px !important;
 }
