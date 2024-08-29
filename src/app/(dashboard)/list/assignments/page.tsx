@@ -1,35 +1,34 @@
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { classesData, role } from "@/lib/data";
+import { assignmentsData, examsData, role } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-type Class = {
+type Assignment = {
   id: number;
-  name: string;
-  capacity: number;
-  grade: number;
-  supervisor: string;
+  subject: string;
+  class: string;
+  teacher: string;
+  dueDate: string;
 };
 const columns = [
   {
-    header: "Class Name",
+    header: "Subject Name",
+    accessor: "subject",
+  },
+  {
+    header: "Class",
     accessor: "class",
   },
   {
-    header: "Capacity",
-    accessor: "capacity",
+    header: "Teacher",
+    accessor: "teacher",
     className: "hidden md:table-cell",
   },
   {
-    header: "Grade",
-    accessor: "grade",
-    className: "hidden md:table-cell",
-  },
-  {
-    header: "Supervisor",
-    accessor: "supervisor",
+    header: "DueDate",
+    accessor: "date",
     className: "hidden md:table-cell",
   },
   {
@@ -37,16 +36,16 @@ const columns = [
     accessor: "action",
   },
 ];
-const ClassListPage = () => {
-  const renderRow = (item: Class) => (
+const AssignmentListPage = () => {
+  const renderRow = (item: Assignment) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 cursor-pointer text-sm hover:bg-purplelight"
     >
-      <td className="flex items-center gap-4 p-4">{item.name}</td>
-      <td className="hidden md:table-cell">{item.capacity}</td>
-      <td className="hidden md:table-cell">{item.grade}</td>
-      <td className="hidden md:table-cell">{item.supervisor}</td>
+      <td className="flex items-center gap-4 p-4">{item.subject}</td>
+      <td>{item.class}</td>
+      <td className="hidden md:table-cell">{item.teacher}</td>
+      <td className="hidden md:table-cell">{item.dueDate}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/students/${item.id}`}>
@@ -69,7 +68,7 @@ const ClassListPage = () => {
       {/* top */}
       <div className="flex justify-between items-center">
         <h1 className="hidden md:block placeholder:text-lg font-semibold">
-          All Classes
+          All Assignments
         </h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
@@ -89,11 +88,11 @@ const ClassListPage = () => {
         </div>
       </div>
       {/* list */}
-      <Table columns={columns} renderRow={renderRow} data={classesData} />
+      <Table columns={columns} renderRow={renderRow} data={assignmentsData} />
       {/* pagenation */}
       <Pagination />
     </div>
   );
 };
 
-export default ClassListPage;
+export default AssignmentListPage;
