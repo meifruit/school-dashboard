@@ -1,3 +1,4 @@
+import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
@@ -55,15 +56,11 @@ const EventListPage = () => {
       <td className="hidden md:table-cell">{item.endTime}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`/list/students/${item.id}`}>
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-sky">
-              <Image src={"/update.png"} alt={""} width={16} height={16} />
-            </button>
-          </Link>
           {role === "admin" && (
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple">
-              <Image src={"/delete.png"} alt={""} width={16} height={16} />
-            </button>
+            <>
+              <FormModal table="event" type="update" data={item} />
+              <FormModal table="event" type="delete" id={item.id} />
+            </>
           )}
         </div>
       </td>
@@ -86,11 +83,7 @@ const EventListPage = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-yellow">
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
-            {role === "admin" && (
-              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-yellow">
-                <Image src={"/create.png"} alt={""} width={14} height={14} />
-              </button>
-            )}
+            {role === "admin" && <FormModal table="event" type="create" />}
           </div>
         </div>
       </div>

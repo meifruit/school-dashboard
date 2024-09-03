@@ -35,7 +35,7 @@ const FormModal = ({
   return (
     <>
       <button
-        className={`${size} flex items-center justify-between rounded-full ${bgColor}`}
+        className={`${size} flex items-center justify-center rounded-full ${bgColor}`}
       >
         <Image src={`/${type}.png`} alt={""} width={16} height={16} />
       </button>
