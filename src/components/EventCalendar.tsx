@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { enUS } from "date-fns/locale";
 import { format } from "date-fns";
+import { ArrowRight } from "lucide-react";
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -44,7 +45,40 @@ const EventCalendar = () => {
   const formattedDate =
     value instanceof Date ? format(value, "MMMM yyyy", { locale: enUS }) : "";
   return (
-    <div className="bg-white p-4 rounded-md">
+    <div className="bg-gray-200 p-4 rounded-md">
+      <div className="">
+        <h1 className="text-xl font-semibold">Calendar</h1>
+        <div className="flex justify-between gap-2 xl:gap-4 w-full">
+          <div className="bg-white p-4 my-2 flex flex-row justify-between items-center gap-2 xxl:gap-6 w-1/2">
+            <div className="">
+              <span className="before:content-['•'] before:text-[#00b4d8] pr-1"></span>
+              <span className="text-[0.6rem] md:text-xs text-gray-400">
+                08 Oct, 2024
+              </span>
+              <h1 className="font-semibold pl-4 pt-2 md:text-sm">
+                School Event
+              </h1>
+            </div>
+            <div className="flex justify-between">
+              <ArrowRight width={20} height={20} className="text-gray-500" />
+            </div>
+          </div>
+          <div className="bg-white p-4 my-2 flex flex-row justify-between items-center gap-2 xxl:gap-6 w-1/2">
+            <div className="">
+              <span className="before:content-['•'] before:text-[#00b4d8] pr-1"></span>
+              <span className="text-[0.6rem] md:text-xs text-gray-400">
+                08 Oct, 2024
+              </span>
+              <h1 className="font-semibold pl-4 pt-2 md:text-sm">
+                School Event
+              </h1>
+            </div>
+            <div className="">
+              <ArrowRight width={20} height={20} className="text-gray-500" />
+            </div>
+          </div>
+        </div>
+      </div>
       <Calendar locale={enUS} onChange={onChange} value={value} />
 
       <div className="flex justify-between items-center">
