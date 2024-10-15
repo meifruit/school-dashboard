@@ -11,13 +11,15 @@ export default function DashboardLayout({
   return (
     <div className="h-screen flex">
       {/* left */}
-      <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-4 overflow-scroll overflow-x-hidden">
+      <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-4 overflow-scroll overflow-x-hidden bg-[#212d40]">
         <Link
           href={"/"}
           className="flex items-center justify-center lg:justify-start gap-2"
         >
-          <Image src={"/b.png"} alt={"logo"} width={32} height={32} />
-          <span className="hidden lg:block font-bold">Bolobolo</span>
+          <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
+          <span className="hidden lg:block font-bold uppercase text-gray-300">
+            school plane
+          </span>
         </Link>
         <Menu />
       </div>
