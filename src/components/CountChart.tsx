@@ -18,13 +18,13 @@ const data = [
     name: "Girs",
     count: 50,
     pv: 2400,
-    fill: "#fae27c",
+    fill: "#ffb703",
   },
   {
     name: "Boys",
     count: 50,
     pv: 4567,
-    fill: "#c3ebfa",
+    fill: "#212d40",
   },
 ];
 
@@ -44,14 +44,14 @@ const CountChart = () => {
             cy="50%"
             innerRadius="40%"
             outerRadius="100%"
-            barSize={32}
+            barSize={8}
             data={data}
           >
             <RadialBar background dataKey="count" />
           </RadialBarChart>
         </ResponsiveContainer>
         <Image
-          src={"/maleFemale.png"}
+          src={"/students.png"}
           alt={""}
           width={50}
           height={50}

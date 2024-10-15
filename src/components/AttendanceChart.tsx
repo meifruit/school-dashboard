@@ -68,15 +68,15 @@ const AttendanceChart = () => {
           />
           <Bar
             dataKey="present"
-            fill="#fae27c"
+            fill="#ffb703"
             legendType="circle"
-            radius={[10, 10, 0, 0]}
+            radius={[5, 5, 0, 0]}
           />
           <Bar
             dataKey="absent"
-            fill="#c3ebfa"
+            fill="#212d40"
             legendType="circle"
-            radius={[10, 10, 0, 0]}
+            radius={[5, 5, 0, 0]}
           />
         </BarChart>
       </ResponsiveContainer>
