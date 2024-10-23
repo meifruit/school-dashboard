@@ -4,7 +4,8 @@ import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
 import { role, teachersData } from "@/lib/data";
 import prisma from "@/lib/prisma";
-import { Class, Subject, Teacher } from "@prisma/client";
+import { ITEM_PER_PAGE } from "@/lib/settings";
+import { Class, Prisma, Subject, Teacher } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -101,14 +102,52 @@ const renderRow = (item: TeacherList) => (
     </td>
   </tr>
 );
-const TeacherListPage = async () => {
-  const teachers = await prisma.teacher.findMany({
-    include: {
-      subjects: true,
-      classes: true,
-    },
-  });
+const TeacherListPage = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) => {
+  // console.log(searchParams);
+
+  const { page, ...queryParams } = searchParams;
+  const p = page ? parseInt(page) : 1;
+
+  // url params condition
+  const query: Prisma.TeacherWhereInput = {};
+  if (queryParams) {
+    for (const [key, value] of Object.entries(queryParams)) {
+      if (value !== undefined)
+        switch (key) {
+          case "classId": {
+            query.lessons = {
+              some: {
+                classId: parseInt(value),
+              },
+            };
+          }
+        }
+    }
+  }
+  const [teachers, count] = await prisma.$transaction([
+    prisma.teacher.findMany({
+      // where: {
+      //   lessons: {
+      //     some: { classId: parseInt(queryParams.classId!) },
+      //   },
+      // },
+      where: query,
+      include: {
+        subjects: true,
+        classes: true,
+      },
+      take: ITEM_PER_PAGE,
+      skip: ITEM_PER_PAGE * (p - 1),
+    }),
+    prisma.teacher.count({ where: query }),
+  ]);
+
   // console.log(teachers);
+
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* top */}
@@ -137,7 +176,7 @@ const TeacherListPage = async () => {
       {/* list */}
       <Table columns={columns} renderRow={renderRow} data={teachers} />
       {/* pagenation */}
-      <Pagination />
+      <Pagination page={p} count={count} />
     </div>
   );
 };
