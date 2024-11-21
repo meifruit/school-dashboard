@@ -145,7 +145,10 @@ const SingleTeacherPage = () => {
           <h1 className="text-xl font-semibold">Shortcuts</h1>
           {/* shortcuts */}
           <div className="flex flex-wrap items-start mt-4 gap-4 text-xs text-gray-500">
-            <Link href={""} className="bg-skylight rounded-md p-3">
+            <Link
+              href={"/list/classes?supervisorId=${teacher2}"}
+              className="bg-skylight rounded-md p-3"
+            >
               Teacher&apos;s Classes
             </Link>
             <Link
