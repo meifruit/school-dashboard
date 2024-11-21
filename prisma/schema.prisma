@@ -102,9 +102,9 @@ model Lesson {
   day         Day
   startTime   DateTime
   endTime     DateTime
-  Subject     Subject      @relation(fields: [subjectId], references: [id])
+  subject     Subject      @relation(fields: [subjectId], references: [id])
   subjectId   Int
-  Class       Class        @relation(fields: [classId], references: [id])
+  class       Class        @relation(fields: [classId], references: [id])
   classId     Int
   teacherId   String
   teacher     Teacher      @relation(fields: [teacherId], references: [id])
@@ -140,7 +140,7 @@ model Result {
   examId       Int?
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   assignmentId Int?
-  Student      Student     @relation(fields: [studentId], references: [id])
+  student      Student     @relation(fields: [studentId], references: [id])
   studentId    String
 }
 
@@ -169,7 +169,7 @@ model Announcement {
   title       String
   description String
   date        DateTime
-  Class       Class?   @relation(fields: [classId], references: [id])
+  class       Class?   @relation(fields: [classId], references: [id])
   classId     Int?
 }
 
