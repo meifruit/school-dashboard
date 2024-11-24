@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import InputField from "../InputField";
 import Image from "next/image";
 import { subjectSchema, SubjectSchema } from "@/lib/formValidationSchema";
+import { createSubject } from "@/lib/actions";
+import { useFormState } from "react-dom";
 
 const SubjectForm = ({
   type,
@@ -20,8 +22,14 @@ const SubjectForm = ({
   } = useForm<SubjectSchema>({
     resolver: zodResolver(subjectSchema),
   });
+
+  const [state, formAction] = useFormState(createSubject, {
+    success: false,
+    error: false,
+  });
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+    formAction(data);
   });
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>
@@ -38,6 +46,9 @@ const SubjectForm = ({
           error={errors?.name}
         />
       </div>
+      {state.error && (
+        <span className="text-red-600">Error for create subject!</span>
+      )}
       <button className="bg-blue-400 text-white p-2 rounded-md">
         {type === "create" ? "Create" : "Update"}
       </button>
