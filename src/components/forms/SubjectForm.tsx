@@ -56,7 +56,7 @@ const SubjectForm = ({
           label={"Subject name"}
           register={register}
           name={"name"}
-          defaultValue={data?.username}
+          defaultValue={data?.name}
           error={errors?.name}
         />
       </div>
