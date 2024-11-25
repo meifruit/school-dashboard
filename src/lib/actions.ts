@@ -13,6 +13,9 @@ export const createSubject = async (
     await prisma.subject.create({
       data: {
         name: data.name,
+        teachers: {
+          connect: data.teachers.map((teacherId) => ({ id: teacherId })),
+        },
       },
     });
     // revalidatePath("/list/subjects");
@@ -34,8 +37,12 @@ export const updateSubject = async (
       },
       data: {
         name: data.name,
+        teachers: {
+          set: data.teachers.map((teacherId) => ({ id: teacherId })),
+        },
       },
     });
+
     // revalidatePath("/list/subjects");
     return { success: true, error: false };
   } catch (err) {
@@ -43,6 +50,7 @@ export const updateSubject = async (
     return { success: false, error: true };
   }
 };
+
 export const deleteSubject = async (
   currentState: CurrentState,
   data: FormData
