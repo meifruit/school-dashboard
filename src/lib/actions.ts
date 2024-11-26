@@ -1,7 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { ClassSchema, SubjectSchema } from "./formValidationSchema";
+import {
+  ClassSchema,
+  SubjectSchema,
+  TeacherSchema,
+} from "./formValidationSchema";
 import prisma from "./prisma";
 
 type CurrentState = { success: boolean; error: boolean };
@@ -119,6 +123,63 @@ export const deleteClass = async (
     });
 
     // revalidatePath("/list/class");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const createTeacher = async (
+  currentState: CurrentState,
+  data: TeacherSchema
+) => {
+  try {
+    await prisma.teacher.create({
+      data,
+    });
+
+    // revalidatePath("/list/teachers");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const updateTeacher = async (
+  currentState: CurrentState,
+  data: TeacherSchema
+) => {
+  try {
+    await prisma.teacher.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+
+    // revalidatePath("/list/teachers");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const deleteTeacher = async (
+  currentState: CurrentState,
+  data: FormData
+) => {
+  const id = data.get("id") as string;
+  try {
+    await prisma.teacher.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    // revalidatePath("/list/teachers");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);
