@@ -136,7 +136,24 @@ export const createTeacher = async (
 ) => {
   try {
     await prisma.teacher.create({
-      data,
+      data: {
+        id: data.id,
+        username: data.username,
+        name: data.name,
+        surname: data.surname,
+        email: data.email || null,
+        phone: data.phone || null,
+        address: data.address,
+        img: data.img || null,
+        bloodType: data.bloodType,
+        sex: data.sex,
+        birthday: data.birthday,
+        subjects: {
+          connect: data.subjects?.map((subjectId: string) => ({
+            id: parseInt(subjectId),
+          })),
+        },
+      },
     });
 
     // revalidatePath("/list/teachers");
