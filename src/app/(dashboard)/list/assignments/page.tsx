@@ -31,9 +31,9 @@ const AssignmentListPage = async ({
   searchParams: { [key: string]: string | undefined };
 }) => {
   const authObject = await auth();
-  const { sessionClaims } = authObject;
+  const { userId, sessionClaims } = authObject;
   const role = (sessionClaims?.metadata as { role?: string })?.role;
-
+  const currentUserId = userId;
   const columns = [
     {
       header: "Subject Name",
@@ -117,6 +117,36 @@ const AssignmentListPage = async ({
       }
     }
   }
+
+  // role conditions
+  switch (role) {
+    case "admin":
+      break;
+    case "teacher":
+      query.lesson.teacherId = currentUserId!;
+      break;
+    case "student":
+      query.lesson.class = {
+        students: {
+          some: {
+            id: currentUserId!,
+          },
+        },
+      };
+      break;
+    case "parent":
+      query.lesson.class = {
+        students: {
+          some: {
+            id: currentUserId!,
+          },
+        },
+      };
+      break;
+    default:
+      break;
+  }
+
   const [assignments, count] = await prisma.$transaction([
     prisma.assignment.findMany({
       where: query,
