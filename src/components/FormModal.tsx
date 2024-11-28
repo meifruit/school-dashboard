@@ -63,7 +63,7 @@ const forms: {
       relatedData={relatedData}
     />
   ),
-  student: (setOpen, type, data) => (
+  student: (setOpen, type, data, relatedData) => (
     <StudentForm
       type={type}
       data={data}
