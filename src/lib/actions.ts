@@ -7,6 +7,7 @@ import {
   TeacherSchema,
 } from "./formValidationSchema";
 import prisma from "./prisma";
+import { clerkClient } from "@clerk/nextjs/server";
 
 type CurrentState = { success: boolean; error: boolean };
 export const createSubject = async (
@@ -135,9 +136,18 @@ export const createTeacher = async (
   data: TeacherSchema
 ) => {
   try {
+    const client = await clerkClient();
+    const user = await client.users.createUser({
+      username: data.username,
+      password: data.password,
+      firstName: data.name,
+      lastName: data.surname,
+      publicMetadata: { role: "teacher" },
+    });
+
     await prisma.teacher.create({
       data: {
-        id: data.id,
+        id: user.id,
         username: data.username,
         name: data.name,
         surname: data.surname,
@@ -155,7 +165,6 @@ export const createTeacher = async (
         },
       },
     });
-
     // revalidatePath("/list/teachers");
     return { success: true, error: false };
   } catch (err) {
