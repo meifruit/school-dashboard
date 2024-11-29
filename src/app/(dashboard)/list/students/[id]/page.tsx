@@ -1,6 +1,7 @@
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalendar";
 import BigCalendarContainer from "@/components/BigCalendarContainer";
+import FormContainer from "@/components/FormContainer";
 import Performance from "@/components/Performance";
 import StudentAttendanceCard from "@/components/StudentAttendanceCard";
 import prisma from "@/lib/prisma";
@@ -55,6 +56,9 @@ const SingleStudentPage = async ({
                 <h1 className="text-xl font-semibold">
                   {student.name + " " + student.surname}
                 </h1>
+                {role === "admin" && (
+                  <FormContainer table="student" type="update" data={student} />
+                )}
               </div>
               <p className="text-sm text-gray-500">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
