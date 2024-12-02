@@ -3,7 +3,7 @@ version: "3.8"
 services:
   postgres:
     image: postgres:15
-    container_name: school
+    container_name: school2
     environment:
       POSTGRES_USER: mei
       POSTGRES_PASSWORD: 123
