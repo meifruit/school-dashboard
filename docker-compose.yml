@@ -6,7 +6,7 @@ services:
     container_name: postgres_db
     environment:
       POSTGRES_USER: mei
-      POSTGRES_PASSWORD: 123
+      POSTGRES_PASSWORD: "123"
       POSTGRES_DB: school
     ports:
       - "55000:5432"
