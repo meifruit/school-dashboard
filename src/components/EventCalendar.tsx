@@ -79,7 +79,7 @@ const EventCalendar = () => {
           </div>
         </div>
       </div>
-      <Calendar locale={enUS} onChange={onChange} value={value} />
+      <Calendar onChange={onChange} value={value} />
 
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-semibold my-4">Events</h1>
