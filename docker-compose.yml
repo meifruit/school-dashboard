@@ -3,7 +3,7 @@ version: "3.8"
 services:
   postgres:
     image: postgres:15
-    container_name: school2
+    container_name: school
     environment:
       POSTGRES_USER: mei
       POSTGRES_PASSWORD: 123
@@ -12,6 +12,12 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U mei -d school'"]
+      interval: 5s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
 
   app:
     build: .
@@ -19,9 +25,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgresql://mei:123@postgres1:5432/school
+      DATABASE_URL: postgresql://mei:123@postgres:5432/school
     depends_on:
       - postgres
+    command: bash -c "npx prisma migrate dev --name init && npm start"
 
 volumes:
   postgres_data:
