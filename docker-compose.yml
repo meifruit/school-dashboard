@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: school
     ports:
-      - "5432:5432"
+      - "55000:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
