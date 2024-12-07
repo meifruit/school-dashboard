@@ -39,12 +39,12 @@
 
 .rbc-btn-group button {
   border: none !important;
-  background-color: #f1f0ff !important;
+  background-color: #a8dadc !important;
   margin-left: 2px !important;
 }
 
 .rbc-toolbar button.rbc-active {
-  background-color: #dbdafe !important;
+  background-color: #a8dadc !important;
   box-shadow: none !important;
 }
 
@@ -82,10 +82,11 @@
   padding: 10px !important;
   margin: 10px !important;
   width: 99% !important;
+  height: max-content !important;
 }
 
 .rbc-event:nth-child(1) {
-  background-color: #e2f8ff !important;
+  background-color: #c7e4e5 !important;
 }
 .rbc-event:nth-child(2) {
   background-color: #fefce8 !important;
