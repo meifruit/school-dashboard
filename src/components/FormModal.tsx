@@ -110,7 +110,7 @@ const FormModal = ({
       ? "bg-yellow"
       : type === "update"
       ? "bg-skylight"
-      : "bg-purple";
+      : "bg-gray-300";
 
   const [open, setOpen] = useState(false);
 
