@@ -3,6 +3,8 @@ import AttendanceChart from "@/components/AttendanceChart";
 import CountChart from "@/components/CountChart";
 import EventCalendar from "@/components/EventCalendar";
 import FinanceChart from "@/components/FinanceChart";
+import TopPerformer from "@/components/TopPerformer";
+import TopPerformerServer from "@/components/TopPerformerServer";
 import UserCard from "@/components/UserCard";
 const AdminPage = () => {
   return (
@@ -18,19 +20,20 @@ const AdminPage = () => {
         {/* left */}
         <div className="w-full lg:w-2/3 flex flex-col gap-8">
           {/* chart */}
-          <div className="flex gap-4 flex-col lg:flex-row">
+          <div className="w-full h-[300px]">
+            <FinanceChart />
+          </div>
+          {/* bottomchart */}
+          <div className="flex justify-between gap-4 flex-col md:flex-row">
             {/* count chart */}
-            <div className="w-full lg:w-1/3 h-[450px]">
+            <div className="w-full lg:w-1/3 h-[400px]">
               <CountChart />
             </div>
             {/* attendence chart */}
-            <div className="w-full lg:w-2/3 h-[450px]">
-              <AttendanceChart />
+            <div className="w-full lg:w-2/3 h-[400px]">
+              {/* <AttendanceChart /> */}
+              <TopPerformerServer />
             </div>
-          </div>
-          {/* bottomchart */}
-          <div className="w-full h-[500px]">
-            <FinanceChart />
           </div>
         </div>
         {/* right */}
