@@ -28,7 +28,7 @@ services:
       DATABASE_URL: postgresql://mei:123@postgres:5432/school
     depends_on:
       - postgres
-    command: bash -c "npx prisma migrate dev --name init && npm start"
+    command: bash -c "npx prisma migrate deploy && npm run start"
 
 volumes:
   postgres_data:

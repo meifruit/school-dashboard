@@ -3,13 +3,13 @@ const prisma = new PrismaClient();
 
 async function main() {
   // ADMIN
-  await prisma.admin.upsert({
+  await prisma.admin.create({
     data: {
       id: "admin1",
       username: "admin1",
     },
   });
-  await prisma.admin.upsert({
+  await prisma.admin.create({
     data: {
       id: "admin2",
       username: "admin2",
