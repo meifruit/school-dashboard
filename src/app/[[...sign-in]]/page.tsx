@@ -33,7 +33,9 @@ const LoginPage = () => {
             <Image src={"/logo2.png"} alt={""} width={24} height={24} />
             SchoolPlane
           </h1>
-          <h2 className="text-gray-400">Sign in to your account</h2>
+          <h2 className="text-gray-400">
+            Please login with admin/admin or teacher/teacher
+          </h2>
           <Clerk.GlobalError className="text-sm text-red-400" />
           <Clerk.Field name="identifier" className="flex flex-col gap-2">
             <Clerk.Label className="text-xs text-gray-500">
