@@ -1,3 +1,4 @@
+import { Announcement } from "@prisma/client";
 import { z } from "zod";
 
 export const subjectSchema = z.object({
@@ -85,3 +86,12 @@ export const examSchema = z.object({
 });
 
 export type ExamSchema = z.infer<typeof examSchema>;
+
+export const announcementSchema = z.object({
+  id: z.coerce.number().optional(),
+  title: z.string().min(1, { message: "Title name is required!" }),
+  description: z.string().min(1, { message: "Title name is required!" }),
+  date: z.coerce.date({ message: "Date is required!" }),
+  classId: z.coerce.number().min(1, { message: "Class is required!" }),
+});
+export type AnnouncementSchema = z.infer<typeof announcementSchema>;

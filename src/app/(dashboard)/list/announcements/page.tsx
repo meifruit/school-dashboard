@@ -1,3 +1,4 @@
+import FormContainer from "@/components/FormContainer";
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
@@ -58,8 +59,8 @@ const AnnouncementListPage = async ({
         <div className="flex items-center gap-2">
           {role === "admin" && (
             <>
-              <FormModal table="announcement" type="update" data={item} />
-              <FormModal table="announcement" type="delete" id={item.id} />
+              <FormContainer table="announcement" type="update" data={item} />
+              <FormContainer table="announcement" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -86,19 +87,19 @@ const AnnouncementListPage = async ({
     }
   }
 
-  const roleConditions = {
-    teacher: { lessons: { some: { teacherId: currentUserId! } } },
-    student: { students: { some: { id: currentUserId! } } },
-    parent: { students: { some: { parentId: currentUserId! } } },
-  };
-  query.OR = [
-    {
-      classId: null,
-    },
-    {
-      class: roleConditions[role as keyof typeof roleConditions] || {},
-    },
-  ];
+  // const roleConditions = {
+  //   teacher: { lessons: { some: { teacherId: currentUserId! } } },
+  //   student: { students: { some: { id: currentUserId! } } },
+  //   parent: { students: { some: { parentId: currentUserId! } } },
+  // };
+  // query.OR = [
+  //   {
+  //     classId: null,
+  //   },
+  //   {
+  //     class: roleConditions[role as keyof typeof roleConditions] || {},
+  //   },
+  // ];
   const [announcements, count] = await prisma.$transaction([
     prisma.announcement.findMany({
       where: query,
@@ -131,7 +132,7 @@ const AnnouncementListPage = async ({
               // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-yellow">
               //   <Image src={"/create.png"} alt={""} width={14} height={14} />
               // </button>
-              <FormModal table="announcement" type="create" />
+              <FormContainer table="announcement" type="create" />
             )}
           </div>
         </div>

@@ -20,17 +20,17 @@ const AdminPage = () => {
         {/* left */}
         <div className="w-full lg:w-2/3 flex flex-col gap-8">
           {/* chart */}
-          <div className="w-full h-[300px]">
+          <div className="w-full h-[400px]">
             <FinanceChart />
           </div>
           {/* bottomchart */}
           <div className="flex justify-between gap-4 flex-col md:flex-row">
             {/* count chart */}
-            <div className="w-full lg:w-1/3 h-[400px]">
+            <div className="w-full lg:w-1/3 h-[450px]">
               <CountChart />
             </div>
             {/* attendence chart */}
-            <div className="w-full lg:w-2/3 h-[400px]">
+            <div className="w-full lg:w-2/3 h-[450px]">
               {/* <AttendanceChart /> */}
               <TopPerformerServer />
             </div>
@@ -39,7 +39,7 @@ const AdminPage = () => {
         {/* right */}
         <div className="w-full lg:w-1/3 flex flex-col gap-8">
           <EventCalendar />
-          {/* <Announcements /> */}
+          <Announcements />
         </div>
       </div>
     </div>
