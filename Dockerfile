@@ -14,13 +14,14 @@ RUN npm install
 COPY . .
 
 # Generate Database
-RUN npx prisma migrate dev --name init
+RUN npx prisma generate
+RUN npm run build
+# RUN npx prisma migrate dev --name init
 
 # Build the Next.js application
-RUN npm run build
 
 # Expose the port the app runs on
-EXPOSE 3000
+# EXPOSE 3000
 
 # Start the Next.js application
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
